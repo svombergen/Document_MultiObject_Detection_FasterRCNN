@@ -13,6 +13,7 @@ from keras.models import Model
 from keras_frcnn import roi_helpers
 from sklearn.metrics import average_precision_score
 import json
+import matplotlib as plt
 # sys.setrecursionlimit(40000)
 
 parser = OptionParser()
@@ -268,9 +269,9 @@ for idx, img_name in enumerate(sorted(os.listdir(predict_base_path))):
     print(all_dets)
     cv2.imwrite('./predicted_imgs/{}.png'.format(idx), img)
     # the following block shows the result, can be turned on anytime
-    # plt.figure(figsize=(20,20))
-    # plt.grid()
-    # plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
-    # plt.show()
+    plt.figure(figsize=(20,20))
+    plt.grid()
+    plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
+    plt.show()
 with open("prediction.json","w") as f:
     json.dump(predicted, f)
